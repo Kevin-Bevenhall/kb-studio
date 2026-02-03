@@ -35,5 +35,13 @@ body {
 :root {
   @include mat.button-overrides((
     filled-container-shape: 4px
-  ))
+  ));
+
+  @include mat.sidenav-overrides((
+    container-shape: 0px
+  ));
+
+  @include mat.list-overrides((
+    list-item-container-shape: 0px
+  ));
 }

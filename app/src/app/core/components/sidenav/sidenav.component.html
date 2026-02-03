@@ -1,1 +1,27 @@
-<p>sidenav works!</p>
+<mat-sidenav-container>
+  <mat-sidenav [opened]="true" [disableClose]="true" mode="side" [style.width]="sidenavWidth()">
+
+    <mat-nav-list>
+      @for (item of menuItems; track item.path) {
+        <a 
+        mat-list-item 
+        matRipple 
+        [routerLink]="item.path" 
+        routerLinkActive="active" 
+        #rla="routerLinkActive" 
+        [activated]="rla.isActive">
+          <mat-icon matListItemIcon> {{ item.icon }} </mat-icon>
+          @if (!isCollapsed()) {
+            <div matListItemTitle> {{ item.label }} </div>
+          }
+        </a>
+        <mat-divider></mat-divider>
+      }
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content [style.margin-left]="sidenavWidth()">
+<!--     <router-outlet /> -->
+     <button matButton (click)="toggleSidenav()">Close</button>
+  </mat-sidenav-content>
+</mat-sidenav-container>

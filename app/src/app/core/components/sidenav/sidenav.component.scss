@@ -1,0 +1,26 @@
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav {
+  transition: all 400ms ease-in-out;
+  background-color: var(--mat-sys-surface-container);
+
+  a {
+    border-radius: 0px;
+    background-color: var(--mat-sys-surface-container);
+
+    &.active {
+      box-shadow: inset 4px 0 0 0 var(--mat-sys-primary);
+      background-color: var(--mat-sys-surface-container);
+
+      * {
+        color: var(--mat-sys-primary)
+      }
+    }
+  }
+}
+
+mat-sidenav-content {
+  transition: all 400ms ease-in-out;
+}
