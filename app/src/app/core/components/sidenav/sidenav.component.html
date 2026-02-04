@@ -1,27 +1,35 @@
-<mat-sidenav-container>
-  <mat-sidenav [opened]="true" [disableClose]="true" mode="side" [style.width]="sidenavWidth()">
+<mat-sidenav-container hasBackdrop="false"> 
+  <mat-sidenav [mode]="sidenavMode()" opened="true" disableClose="true" [style.width]="sidenavWidth()">
+
+    <div class="search-area">
+      <button matIconButton class="search-button" (click)="toggleSidenav()" [disabled]="sidenavPinned()">
+        <mat-icon>search</mat-icon>
+      </button>
+      @if (sidenavExtended()) {
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Filter menu items.." />
+      <button matIconButton class="pin-button" [class.pinned]="sidenavPinned()" (click)="sidenavPinned.set(!sidenavPinned())" matTooltip="Keep sidebar open">
+        <mat-icon>push_pin</mat-icon>
+      </button>
+      }
+    </div>
+
+    <mat-divider></mat-divider>
 
     <mat-nav-list>
-      @for (item of menuItems; track item.path) {
-        <a 
-        mat-list-item 
-        matRipple 
-        [routerLink]="item.path" 
-        routerLinkActive="active" 
-        #rla="routerLinkActive" 
+      @for (item of filteredMenuItems(); track item.path) {
+      <a mat-list-item matRipple [routerLink]="item.path" routerLinkActive="active" #rla="routerLinkActive"
         [activated]="rla.isActive">
-          <mat-icon matListItemIcon> {{ item.icon }} </mat-icon>
-          @if (!isCollapsed()) {
-            <div matListItemTitle> {{ item.label }} </div>
-          }
-        </a>
-        <mat-divider></mat-divider>
+        <mat-icon matListItemIcon> {{ item.icon }} </mat-icon>
+        @if (sidenavExtended()) {
+        <div matListItemTitle> {{ item.label }} </div>
+        }
+      </a>
+      <mat-divider></mat-divider>
       }
     </mat-nav-list>
 
   </mat-sidenav>
-  <mat-sidenav-content [style.margin-left]="sidenavWidth()">
-<!--     <router-outlet /> -->
-     <button matButton (click)="toggleSidenav()">Close</button>
+  <mat-sidenav-content [style.margin-left]="sidenavPinned() ? '255px' : '56px'" (click)="onBackdropClick()">
+    <router-outlet />
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -33,6 +33,8 @@ body {
 }
 
 :root {
+  --mat-sys-contrast: oklch(0.76 0.16 56);
+
   @include mat.button-overrides((
     filled-container-shape: 4px
   ));

@@ -5,6 +5,7 @@ mat-sidenav-container {
 mat-sidenav {
   transition: all 400ms ease-in-out;
   background-color: var(--mat-sys-surface-container);
+  overflow: hidden;
 
   a {
     border-radius: 0px;
@@ -23,4 +24,54 @@ mat-sidenav {
 
 mat-sidenav-content {
   transition: all 400ms ease-in-out;
+  background-color: var(--mat-sys-background) !important;
+}
+
+mat-nav-list {
+  padding: 0px;
+}
+
+.search-area {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 48px;
+  width: 100%;
+  overflow: hidden;
+
+  .search-button {
+    margin-left: 8px;
+  }
+
+  .search-button:disabled {
+    opacity: 1;
+    color: inherit;
+  }
+
+  input {
+    height: 18px;
+    width: 150px;
+    padding: 6px;
+    border: 0px;
+    box-shadow: inset 0 0 0 1px var(--mat-sys-outline);
+  }
+
+  input:focus {
+    outline: 1px solid var(--mat-sys-primary)
+  }
+
+  input:hover {
+    outline: 1px solid var(--mat-sys-primary)
+  }
+
+  .pin-button {
+    position: absolute;
+    right: 0;
+
+    &.pinned {
+      mat-icon {
+        color: var(--mat-sys-contrast);
+      }
+    }
+  }
 }
