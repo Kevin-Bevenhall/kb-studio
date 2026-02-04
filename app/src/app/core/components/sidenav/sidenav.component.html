@@ -19,7 +19,7 @@
       @for (item of filteredMenuItems(); track item.path) {
       <a mat-list-item matRipple [routerLink]="item.path" routerLinkActive="active" #rla="routerLinkActive"
         [activated]="rla.isActive">
-        <mat-icon matListItemIcon> {{ item.icon }} </mat-icon>
+        <mat-icon matListItemIcon [matTooltip]="item.label" matTooltipPosition="right" [matTooltipDisabled]="sidenavExtended()"> {{ item.icon }} </mat-icon>
         @if (sidenavExtended()) {
         <div matListItemTitle> {{ item.label }} </div>
         }
