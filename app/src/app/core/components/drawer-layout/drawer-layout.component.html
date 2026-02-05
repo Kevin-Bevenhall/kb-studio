@@ -1,6 +1,6 @@
 <mat-drawer-container>
-  <mat-drawer opened="true" position="end">
-    <router-outlet></router-outlet>
+  <mat-drawer position="end">
+    <router-outlet (activate)="onActivate()" (deactivate)="onDeactivate()"></router-outlet>
   </mat-drawer>
   <mat-drawer-content>
     <router-outlet name="content"></router-outlet>

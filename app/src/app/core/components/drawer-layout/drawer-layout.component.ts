@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { Component, viewChild } from '@angular/core';
+import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -9,5 +9,13 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './drawer-layout.component.scss',
 })
 export class DrawerLayoutComponent {
+  drawer = viewChild.required(MatDrawer);
 
+  onActivate() {
+    this.drawer().open();
+  }
+
+  onDeactivate() {
+    this.drawer().close();
+  }
 }

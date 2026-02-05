@@ -1,0 +1,10 @@
+<div class="container">
+  <form>
+    <mat-form-field appearance="outline">
+      <input matInput type="text" [value]="searchTerm()" (input)="searchTerm.set($event.target.value)">
+    </mat-form-field>
+  </form>
+  <button matFab>
+    <mat-icon>search</mat-icon>
+  </button>
+</div>

@@ -8,6 +8,7 @@
 
 html {
   height: 100%;
+  box-sizing: border-box;
   @include mat.theme((
     color: (
       primary: mat.$azure-palette,
@@ -39,6 +40,10 @@ body {
     filled-container-shape: 4px
   ));
 
+  @include mat.fab-overrides((
+    container-shape: 4px
+  ));
+
   @include mat.sidenav-overrides((
     container-shape: 0px
   ));
@@ -46,4 +51,8 @@ body {
   @include mat.list-overrides((
     list-item-container-shape: 0px
   ));
+
+  @include mat.form-field-overrides((
+    filled-container-shape: 4px
+  ))
 }
