@@ -3,9 +3,7 @@ mat-drawer-container {
 }
 
 mat-drawer {
-  height: 600px;
+  transition: all 400ms ease-in-out;
 }
 
-mat-drawer-content {
-
-}
+mat-drawer-content {}

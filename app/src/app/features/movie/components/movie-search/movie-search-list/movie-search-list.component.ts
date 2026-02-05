@@ -1,4 +1,4 @@
-import { Component, input, ResourceRef } from '@angular/core';
+import { Component, input, output, ResourceRef } from '@angular/core';
 import { MatListModule } from "@angular/material/list";
 import { MatIcon } from "@angular/material/icon";
 import { MovieSearchResult } from '../../../../../shared/models/movie/movie-search-result';
@@ -10,6 +10,8 @@ import { MovieSearchResult } from '../../../../../shared/models/movie/movie-sear
   styleUrl: './movie-search-list.component.scss',
 })
 export class MovieSearchListComponent {
+  navigate = output<number>();
+
   moviesResource = input.required<ResourceRef<MovieSearchResult[] | undefined>>();
   query = input.required<string>();
 }

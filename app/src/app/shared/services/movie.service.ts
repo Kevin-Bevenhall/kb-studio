@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { MovieSearchResponse } from '../models/movie/movie-search-response';
 import { lastValueFrom, map } from 'rxjs';
 import { MovieSearchResult } from '../models/movie/movie-search-result';
+import { MovieDetail } from '../models/movie/movie-detail';
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +24,13 @@ export class MovieService {
     }).pipe(
       map(data => data.results)
     ))
+  }
+
+  getMovieById(id: number) {
+    return lastValueFrom(this.http.get<MovieDetail>(`${this.baseUrl}/movie/${id}`, {
+      headers: {
+        'Authorization': this.tmdbApiKey
+      }
+    }));
   }
 }

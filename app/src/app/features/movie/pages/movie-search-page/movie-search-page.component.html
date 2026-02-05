@@ -4,6 +4,7 @@
   </app-movie-search-input>
   <app-movie-search-list 
   [moviesResource]="moviesResource"
-  [query]="query()">
+  [query]="query()"
+  (navigate)="handleNavigate($event)">
   </app-movie-search-list>
 </div>

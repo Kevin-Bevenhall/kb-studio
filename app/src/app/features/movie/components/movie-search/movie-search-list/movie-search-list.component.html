@@ -13,7 +13,7 @@
 @else {
 <mat-nav-list>
   @for (movie of moviesResource().value(); track movie.id) {
-  <a mat-list-item>
+  <a mat-list-item (click)="navigate.emit(movie.id)">
     @if (movie.poster_path) {
     <img matListItemAvatar [src]="`https://image.tmdb.org/t/p/original${movie.poster_path}`">
     } @else {
