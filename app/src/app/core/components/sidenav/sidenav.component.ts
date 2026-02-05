@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-sidenav',
   imports: [MatSidenavModule, MatButtonModule, MatListModule, MatIconModule, MatRippleModule, MatDividerModule, RouterOutlet,
-    RouterLink, RouterLinkActive, MatTooltipModule, FormsModule],
+  RouterLink, RouterLinkActive, MatTooltipModule, FormsModule],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss',
 })
@@ -22,7 +22,7 @@ export class SidenavComponent {
   sidenav = viewChild.required(MatSidenav);
 
   sidenavOpen = signal(true);
-  sidenavExtended = signal(true);
+  sidenavExtended = signal(false);
   sidenavPinned = signal(false);
   searchTerm = signal('');
 

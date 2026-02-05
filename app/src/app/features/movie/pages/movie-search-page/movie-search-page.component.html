@@ -1,0 +1,9 @@
+<div class="container">
+  <app-movie-search-input 
+    (query)="query.set($event)">
+  </app-movie-search-input>
+  <app-movie-search-list 
+  [moviesResource]="moviesResource"
+  [query]="query()">
+  </app-movie-search-list>
+</div>

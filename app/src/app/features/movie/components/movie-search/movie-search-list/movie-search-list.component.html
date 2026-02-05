@@ -1,0 +1,27 @@
+@if (moviesResource().isLoading()) {
+<div>loading..</div>
+}
+
+@else if (moviesResource().error()) {
+<div>error loading data..</div>
+}
+
+@else if (moviesResource().value() && query() && !moviesResource().value()?.length) {
+<div>no results!</div>
+}
+
+@else {
+<mat-nav-list>
+  @for (movie of moviesResource().value(); track movie.id) {
+  <a mat-list-item>
+    @if (movie.poster_path) {
+    <img matListItemAvatar [src]="`https://image.tmdb.org/t/p/original${movie.poster_path}`">
+    } @else {
+    <mat-icon matListItemIcon>block</mat-icon>
+    }
+    <div matListItemTitle> {{ movie.title }} </div>
+  </a>
+  <mat-divider></mat-divider>
+  }
+</mat-nav-list>
+}

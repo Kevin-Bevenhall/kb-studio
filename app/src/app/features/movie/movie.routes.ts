@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
-import { MovieSearchPageComponent } from "./movie-search/movie-search-page.component";
-import { MovieDetailPageComponent } from "./movie-detail/movie-detail-page.component";
+import { MovieSearchPageComponent } from "./pages/movie-search-page/movie-search-page.component";
+import { MovieDetailPageComponent } from "./pages/movie-detail-page/movie-detail-page.component";
 import { DrawerLayoutComponent } from "../../core/components/drawer-layout/drawer-layout.component";
 
 export const movieRoutes: Routes = [
