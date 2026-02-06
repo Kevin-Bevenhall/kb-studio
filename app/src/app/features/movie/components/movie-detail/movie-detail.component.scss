@@ -1,0 +1,39 @@
+@use '@angular/material' as mat;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+}
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  mat-icon {
+    color: var(--mat-sys-contrast);
+  }
+}
+
+.movie-poster {
+  max-inline-size: 80%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.movie-title {
+  font: var(--mat-sys-title-large);
+  text-wrap: balance;
+  text-align: center;
+}
+
+.movie-overview {
+  font: var(--mat-sys-body-medium);
+}
+
+.chip-container {
+  display: flex;
+  gap: 5px;
+}

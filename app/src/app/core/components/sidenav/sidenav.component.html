@@ -29,7 +29,9 @@
     </mat-nav-list>
 
   </mat-sidenav>
-  <mat-sidenav-content [style.margin-left]="sidenavPinned() ? '255px' : '56px'" (click)="onBackdropClick()">
+  <mat-sidenav-content 
+  [style.margin-left]="sidenavPinned() ? '255px' : '56px'" 
+  (click)="onBackdropClick()">
     <router-outlet />
   </mat-sidenav-content>
 </mat-sidenav-container>
