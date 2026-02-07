@@ -26,6 +26,15 @@ export class MovieService {
     ))
   }
 
+  getMoviesByQueryAndPage(query: string, page: number): Promise<MovieSearchResponse> {
+    const encodedQuery = encodeURIComponent(query);
+    return lastValueFrom(this.http.get<MovieSearchResponse>(`${this.baseUrl}/search/movie?query=${encodedQuery}&page=${page}`, {
+      headers: {
+        'Authorization': this.tmdbApiKey
+      }
+    }))
+  }
+
   getMovieById(id: number) {
     return lastValueFrom(this.http.get<MovieDetail>(`${this.baseUrl}/movie/${id}`, {
       headers: {

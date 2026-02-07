@@ -1,0 +1,28 @@
+@use '@angular/material' as mat;
+
+mat-nav-list {
+  padding: 0px;
+  margin: 0 auto;
+
+  position: absolute;
+  z-index: 10;
+  top: 1;
+  left: 0;
+  right: 0;
+
+  max-height: 600px;
+  max-width: 600px;
+  overflow-y: auto;
+  background-color: var(--mat-sys-background);
+}
+
+.loading-container {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+
+  max-width: 600px;
+  margin: 0 auto;
+  height: 20px;
+}

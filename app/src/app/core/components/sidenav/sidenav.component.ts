@@ -28,7 +28,7 @@ export class SidenavComponent implements OnInit {
   sidenavPinned = signal(false);
   searchTerm = signal('');
 
-  sidenavMode = computed(() => this.sidenavPinned() ? 'side' : 'over')
+  sidenavMode = computed(() => this.sidenavPinned() ? 'side' : 'over');
   sidenavWidth = computed(() => this.sidenavExtended() ? '255px' : '56px');
 
   menuItems = [

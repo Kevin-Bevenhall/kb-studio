@@ -3,11 +3,11 @@
     <mat-icon>close</mat-icon>
   </button>
   <img class="movie-poster" [src]="`https://image.tmdb.org/t/p/original${movie().poster_path}`" alt="Movie poster">
-  <div class="chip-container">
+  <mat-chip-set class="chip-container">
     @for (genre of movie().genres; track genre.id) {
       <mat-chip> {{ genre.name }} </mat-chip>
     }
-  </div>
+  </mat-chip-set>
   <p class="movie-title"> {{ movie().title }} </p>
   <p class="movie-overview"> {{ movie().overview }} </p>
 </div>

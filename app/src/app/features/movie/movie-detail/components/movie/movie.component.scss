@@ -12,21 +12,22 @@
   position: absolute;
   top: 5px;
   left: 5px;
+
   mat-icon {
     color: var(--mat-sys-contrast);
   }
 }
 
 .movie-poster {
-  max-inline-size: 60%;
-  margin: auto;
   margin-top: 20px;
+  max-height: 400px;
 }
 
 .movie-title {
   font: var(--mat-sys-title-large);
   text-wrap: balance;
   text-align: center;
+  margin: 0px;
 }
 
 .movie-overview {
@@ -38,4 +39,8 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
+  @include mat.chips-overrides((
+      container-shape-radius: 4px,
+      container-height: 26px
+  ));
 }

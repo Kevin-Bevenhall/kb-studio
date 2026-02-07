@@ -3,8 +3,11 @@
     (query)="query.set($event)">
   </app-movie-search-input>
   <app-movie-search-list 
-  [moviesResource]="moviesResource"
+  [moviesQueryResource]="moviesQueryResource"
   [query]="query()"
   (navigate)="handleNavigate($event)">
   </app-movie-search-list>
+
+  <app-movie-search-grid></app-movie-search-grid>
+  <button class="bottom" (click)="test()">test</button>
 </div>

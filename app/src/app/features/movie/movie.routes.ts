@@ -1,8 +1,8 @@
 import { Routes } from "@angular/router";
-import { MovieSearchPageComponent } from "./pages/movie-search-page/movie-search-page.component";
-import { MovieDetailPageComponent } from "./pages/movie-detail-page/movie-detail-page.component";
 import { DrawerLayoutComponent } from "../../core/components/drawer-layout/drawer-layout.component";
 import { MovieDetailResolver } from "../../shared/resolvers/movie-detail.resolver";
+import { MovieDetailComponent } from "./movie-detail/movie-detail.component";
+import { MovieSearchComponent } from "./movie-search/movie-search.component";
 
 export const movieRoutes: Routes = [
   {
@@ -11,12 +11,12 @@ export const movieRoutes: Routes = [
     children: [
       {
         path: '',
-        component: MovieSearchPageComponent,
+        component: MovieSearchComponent,
         outlet: 'content'
       },
       {
         path: ':movieId',
-        component: MovieDetailPageComponent,
+        component: MovieDetailComponent,
         resolve: {
           movie: MovieDetailResolver
         }

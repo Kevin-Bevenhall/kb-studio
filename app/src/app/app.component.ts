@@ -26,16 +26,18 @@ export class App {
       }
     });
 
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        this.loading.set(true);
-      } else if (
-        event instanceof NavigationEnd ||
-        event instanceof NavigationCancel ||
-        event instanceof NavigationError 
-      ) {
-        this.loading.set(false);
-      }
-    })
+    this.router.events.pipe(
+      takeUntilDestroyed()
+    ).subscribe(event => {
+        if (event instanceof NavigationStart) {
+          this.loading.set(true);
+        } else if (
+          event instanceof NavigationEnd ||
+          event instanceof NavigationCancel ||
+          event instanceof NavigationError
+        ) {
+          this.loading.set(false);
+        }
+      })
   }
 }
