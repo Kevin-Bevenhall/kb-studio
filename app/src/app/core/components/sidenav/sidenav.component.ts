@@ -10,20 +10,23 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { LocalStorageService } from '../../../shared/services/local-storage.service';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
   selector: 'app-sidenav',
   imports: [MatSidenavModule, MatButtonModule, MatListModule, MatIconModule, MatRippleModule, MatDividerModule, RouterOutlet,
-    RouterLink, RouterLinkActive, MatTooltipModule, FormsModule],
+    RouterLink, RouterLinkActive, MatTooltipModule, FormsModule, HeaderComponent],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss',
 })
 export class SidenavComponent implements OnInit {
   protected authService = inject(AuthService);
   protected localStorageService = inject(LocalStorageService);
+  private breakpointObserver = inject(BreakpointObserver)
   sidenav = viewChild.required(MatSidenav);
 
-  sidenavOpen = signal(true);
+  isMobile = signal(false);
+
   sidenavExtended = signal(false);
   sidenavPinned = signal(false);
   searchTerm = signal('');
@@ -45,7 +48,11 @@ export class SidenavComponent implements OnInit {
       const searchTerm = this.searchTerm().trim().toLowerCase();
       return this.menuItems.filter(item => item.label.toLowerCase().includes(searchTerm));
     }
-  })
+  });
+
+  constructor() {
+
+  }
 
   ngOnInit(): void {
     const sidenavState = this.localStorageService.getItem('sidenavState');
@@ -68,7 +75,7 @@ export class SidenavComponent implements OnInit {
 
   onBackdropClick() {
     if (!this.sidenavPinned()) {
-      this.sidenavExtended.set(false)
+      this.sidenavExtended.set(false);
     }
   }
 }

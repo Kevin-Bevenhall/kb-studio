@@ -1,4 +1,9 @@
-<mat-sidenav-container hasBackdrop="false"> 
+@if (isMobile()) {
+
+}
+@else {
+<app-header></app-header>
+<mat-sidenav-container hasBackdrop="false">
   <mat-sidenav [mode]="sidenavMode()" opened="true" disableClose="true" [style.width]="sidenavWidth()">
 
     <div class="search-area">
@@ -7,7 +12,8 @@
       </button>
       @if (sidenavExtended()) {
       <input type="text" [(ngModel)]="searchTerm" placeholder="Filter menu items.." />
-      <button matIconButton class="pin-button" [class.pinned]="sidenavPinned()" (click)="handleSidenavState()" matTooltip="Keep sidebar open">
+      <button matIconButton class="pin-button" [class.pinned]="sidenavPinned()" (click)="handleSidenavState()"
+        matTooltip="Keep sidebar open">
         <mat-icon>push_pin</mat-icon>
       </button>
       }
@@ -19,7 +25,8 @@
       @for (item of filteredMenuItems(); track item.path) {
       <a mat-list-item matRipple [routerLink]="item.path" routerLinkActive="active" #rla="routerLinkActive"
         [activated]="rla.isActive">
-        <mat-icon matListItemIcon [matTooltip]="item.label" matTooltipPosition="right" [matTooltipDisabled]="sidenavExtended()"> {{ item.icon }} </mat-icon>
+        <mat-icon matListItemIcon [matTooltip]="item.label" matTooltipPosition="right"
+          [matTooltipDisabled]="sidenavExtended()"> {{ item.icon }} </mat-icon>
         @if (sidenavExtended()) {
         <div matListItemTitle> {{ item.label }} </div>
         }
@@ -29,9 +36,8 @@
     </mat-nav-list>
 
   </mat-sidenav>
-  <mat-sidenav-content 
-  [style.margin-left]="sidenavPinned() ? '255px' : '56px'" 
-  (click)="onBackdropClick()">
+  <mat-sidenav-content [style.margin-left]="sidenavPinned() ? '255px' : '56px'" (click)="onBackdropClick()">
     <router-outlet />
   </mat-sidenav-content>
 </mat-sidenav-container>
+}

@@ -1,0 +1,7 @@
+@use '@angular/material' as mat;
+
+mat-toolbar {
+  background-color: var(--mat-sys-surface-container);
+  height: 50px;
+  border-bottom: 1px solid var(--mat-sys-primary);
+}
