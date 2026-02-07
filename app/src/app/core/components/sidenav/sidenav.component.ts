@@ -1,16 +1,19 @@
-import { Component, computed, inject, OnInit, signal, viewChild } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, computed, effect, inject, OnInit, signal, viewChild } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav'
-import { MatListModule } from '@angular/material/list'
-import { MatIconModule } from '@angular/material/icon'
-import { MatRippleModule } from '@angular/material/core'
+import { MatRippleModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth.service';
-import { FormsModule } from '@angular/forms';
 import { LocalStorageService } from '../../../shared/services/local-storage.service';
 import { HeaderComponent } from "../header/header.component";
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-sidenav',
@@ -22,10 +25,13 @@ import { HeaderComponent } from "../header/header.component";
 export class SidenavComponent implements OnInit {
   protected authService = inject(AuthService);
   protected localStorageService = inject(LocalStorageService);
-  private breakpointObserver = inject(BreakpointObserver)
+  private breakpointObserver = inject(BreakpointObserver);
   sidenav = viewChild.required(MatSidenav);
 
-  isMobile = signal(false);
+  isMobile = toSignal(this.breakpointObserver.observe('(max-width: 599px)').pipe(
+    map(state => state.matches)
+  ));
+  sidenavOpen = signal(false);
 
   sidenavExtended = signal(false);
   sidenavPinned = signal(false);
@@ -51,7 +57,9 @@ export class SidenavComponent implements OnInit {
   });
 
   constructor() {
-
+    effect(() => {
+      console.log(this.isMobile())
+    })
   }
 
   ngOnInit(): void {
