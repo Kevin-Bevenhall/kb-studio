@@ -1,10 +1,11 @@
-import { Component, effect, output, signal } from '@angular/core';
+import { Component, effect, inject, output, signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
@@ -15,6 +16,8 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 })
 export class MovieSearchInputComponent {
   query = output<string>();
+
+  private router = inject(Router);
 
   searchTerm = signal('');
   searchTerm$ = toObservable(this.searchTerm).pipe(

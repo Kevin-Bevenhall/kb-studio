@@ -1,7 +1,7 @@
 <div class="container">
   <form>
     <mat-form-field appearance="outline">
-      <input matInput type="text" [value]="searchTerm()" (input)="searchTerm.set($event.target.value)">
+      <input matInput type="text" [value]="searchTerm()" (input)="searchTerm.set($event.target.value)" placeholder="Search for a movie...">
     </mat-form-field>
   </form>
   <button matFab>

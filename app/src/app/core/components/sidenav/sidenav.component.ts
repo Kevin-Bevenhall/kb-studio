@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal, viewChild } from '@angular/core';
+import { Component, computed, inject, OnInit, signal, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
@@ -9,16 +9,18 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../shared/services/auth.service';
 import { FormsModule } from '@angular/forms';
+import { LocalStorageService } from '../../../shared/services/local-storage.service';
 
 @Component({
   selector: 'app-sidenav',
   imports: [MatSidenavModule, MatButtonModule, MatListModule, MatIconModule, MatRippleModule, MatDividerModule, RouterOutlet,
-  RouterLink, RouterLinkActive, MatTooltipModule, FormsModule],
+    RouterLink, RouterLinkActive, MatTooltipModule, FormsModule],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss',
 })
-export class SidenavComponent {
+export class SidenavComponent implements OnInit {
   protected authService = inject(AuthService);
+  protected localStorageService = inject(LocalStorageService);
   sidenav = viewChild.required(MatSidenav);
 
   sidenavOpen = signal(true);
@@ -45,14 +47,23 @@ export class SidenavComponent {
     }
   })
 
+  ngOnInit(): void {
+    const sidenavState = this.localStorageService.getItem('sidenavState');
+    if (sidenavState == 'pinned') {
+      this.sidenavExtended.set(true);
+      this.sidenavPinned.set(true);
+    }
+  }
+
   toggleSidenav() {
     if (!this.sidenavPinned()) {
       this.sidenavExtended.set(!this.sidenavExtended());
     }
   }
 
-  check() {
-    console.log(this.authService.user())
+  handleSidenavState() {
+    this.sidenavPinned.set(!this.sidenavPinned());
+    this.localStorageService.setItem('sidenavState', this.sidenavPinned() ? 'pinned' : 'unpinned');
   }
 
   onBackdropClick() {

@@ -7,7 +7,7 @@
       </button>
       @if (sidenavExtended()) {
       <input type="text" [(ngModel)]="searchTerm" placeholder="Filter menu items.." />
-      <button matIconButton class="pin-button" [class.pinned]="sidenavPinned()" (click)="sidenavPinned.set(!sidenavPinned())" matTooltip="Keep sidebar open">
+      <button matIconButton class="pin-button" [class.pinned]="sidenavPinned()" (click)="handleSidenavState()" matTooltip="Keep sidebar open">
         <mat-icon>push_pin</mat-icon>
       </button>
       }
