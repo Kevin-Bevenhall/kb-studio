@@ -16,6 +16,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 })
 export class MovieSearchInputComponent {
   query = output<string>();
+  search = output();
 
   private router = inject(Router);
 

@@ -4,7 +4,7 @@
       <input matInput type="text" [value]="searchTerm()" (input)="searchTerm.set($event.target.value)" placeholder="Search for a movie...">
     </mat-form-field>
   </form>
-  <button matFab>
+  <button matFab (click)="search.emit()">
     <mat-icon>search</mat-icon>
   </button>
 </div>

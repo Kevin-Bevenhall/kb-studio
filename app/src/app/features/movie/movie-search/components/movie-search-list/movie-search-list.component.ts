@@ -13,6 +13,6 @@ import { MatProgressBar } from "@angular/material/progress-bar";
 export class MovieSearchListComponent {
   navigate = output<number>();
 
-  moviesQueryResource = input.required<ResourceRef<MovieSearchResult[] | undefined>>();
+  movies = input.required<ResourceRef<MovieSearchResult[] | undefined>>();
   query = input.required<string>();
 }

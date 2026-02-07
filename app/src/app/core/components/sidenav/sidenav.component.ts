@@ -28,13 +28,11 @@ export class SidenavComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
   sidenav = viewChild.required(MatSidenav);
 
-  // Mobile state
   isMobile = toSignal(this.breakpointObserver.observe('(max-width: 599px)').pipe(
     map(state => state.matches)
   ));
   sidenavOpen = signal(false);
 
-  // Tablet/Desktop state
   sidenavExtended = signal(false);
   sidenavPinned = signal(false);
   searchTerm = signal('');

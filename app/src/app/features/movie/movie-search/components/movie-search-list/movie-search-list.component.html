@@ -1,20 +1,20 @@
-@if (moviesQueryResource().isLoading()) {
+@if (movies().isLoading()) {
 <div class="loading-container">
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
 }
 
-@else if (moviesQueryResource().error()) {
+@else if (movies().error()) {
 <div>error loading data..</div>
 }
 
-@else if (moviesQueryResource().value() && query() && !moviesQueryResource().value()?.length) {
+@else if (movies().value() && query() && !movies().value()?.length) {
 <div>no results!</div>
 }
 
 @else {
-<mat-nav-list>
-  @for (movie of moviesQueryResource().value(); track movie.id) {
+<!-- <mat-nav-list>
+  @for (movie of movies().value(); track movie.id) {
   <a mat-list-item (click)="navigate.emit(movie.id)">
     @if (movie.poster_path) {
     <img matListItemAvatar [src]="`https://image.tmdb.org/t/p/original${movie.poster_path}`">
@@ -25,5 +25,5 @@
   </a>
   <mat-divider></mat-divider>
   }
-</mat-nav-list>
+</mat-nav-list> -->
 }

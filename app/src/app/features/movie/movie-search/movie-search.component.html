@@ -1,12 +1,17 @@
 <div class="page">
   <app-movie-search-input 
-    (query)="query.set($event)">
+    (query)="query.set($event)"
+    (search)="handleSearch()">
   </app-movie-search-input>
   <app-movie-search-list 
-  [moviesQueryResource]="moviesQueryResource"
+  [movies]="moviesQueryResource"
   [query]="query()"
   (navigate)="handleNavigate($event)">
   </app-movie-search-list>
 
-  <app-movie-search-grid></app-movie-search-grid>
+  <app-movie-search-grid
+  [movies]="moviesResultsResource"
+  (updatePage)="handlePageUpdate($event)"
+  [querySnapshot]="querySnapshot()">
+  </app-movie-search-grid>
 </div>

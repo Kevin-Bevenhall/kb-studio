@@ -4,7 +4,7 @@
 @if (isMobile()) {
 
 <mat-sidenav-container>
-  <mat-sidenav [opened]="sidenavOpen()">
+  <mat-sidenav [opened]="sidenavOpen()" [style.width]="'80%'">
     <div class="search-area">
       <button matIconButton class="search-button" (click)="toggleSidenav()" [disabled]="sidenavPinned()">
         <mat-icon>search</mat-icon>

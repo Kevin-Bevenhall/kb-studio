@@ -1,0 +1,15 @@
+@for (movie of movies().value()?.results;  track movie.id) {
+  <img [src]="`https://image.tmdb.org/t/p/original${movie.backdrop_path}`" alt="">
+}
+
+@if (movies().hasValue()) {
+
+  <div>Showing results for: {{ querySnapshot() }} </div>
+}
+
+<mat-paginator 
+#paginator
+[length]="movies().value()?.total_results"
+(page)="handlePagination($event)"
+>
+</mat-paginator>
